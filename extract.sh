@@ -16,11 +16,13 @@ for line in map(str.strip, sys.stdin):
     if line.startswith("Tip"):
         label = " ".join(line.split()[:2])
         rest = " ".join(line.split()[2:])
-        current = " ".join((current, rest))
+
+        if current:
+            current = " ".join((current, rest))
 
         continue
 
-    current = " ".join((current, line))
+    current = " ".join((current, line)).strip()
 
     if line == "":
         if (label != last_label):
